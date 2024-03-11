@@ -13,16 +13,14 @@ module clk_gen_ds
   wire CG_Out;
   wire DS_Out;
 
-  // Clock Generator instance
-  // TODO: connect ports
+  // Tunable clock generator
   clk_gen
   CG ( .reset_i(clk_reset_i)
      , .select_i(select_i[3:0])
      , .clk_o(CG_Out)
      );
 
-  // TODO: Instantiate your downsampler here. Note the port
-  // list above, make sure to connect everything up correctly.
+  // Downsampler module
   bsg_counter_clock_downsample#(.width_p(4) , .harden_p(0)) DS
     ( .clk_i(CG_Out)
     , .reset_i(ds_reset_i)
