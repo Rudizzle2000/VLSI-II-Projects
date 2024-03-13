@@ -1,0 +1,41 @@
+# List of all Verilog source files to include in this build.
+synthesis.inputs.input_files: [
+  "v/fo4_top.v",
+  "v/fo4.v",
+  "v/fo4_1stage.v",
+  "v/fo4_Variable_Stage.v",
+]
+synthesis.inputs.input_files_meta: [append, subst]
+
+# Set top level for synthesis
+synthesis.inputs.top_module: "fo4_top"
+
+# Don't synthesize these gate-level netlist modules
+synthesis.inputs.preserve_modules: ["fo4"]
+
+# Skip the "syn_map" step in this case since everything should be already mapped!
+synthesis.syn_map: False
+
+# No clocks to constrain
+vlsi.inputs.clocks: []
+
+# Custom output loads (Default output pin load is 1.0 pF)
+vlsi.inputs.output_loads:
+  - {name: probe_in_o,  load: 0} # no external load, just used for timing in testbench (load unit pF)
+  - {name: probe_out_o, load: 0} # no external load, just used for timing in testbench (load unit pF)
+
+# Custom SDC clock constraints
+vlsi.inputs.custom_sdc_constraints:
+  # Disable timing through the reset gate (since it connects together a combinational loop!)
+  - "set_disable_timing -from B -to X FO4/reset"
+
+# Placement Constraints
+vlsi.inputs.placement_constraints:
+  - path: "TOP" # (this name isn't actually checked...)
+    type: toplevel
+    width:  100
+    height: 100
+    x: 0
+    y: 0
+    margins: {left: 0, right: 0, top: 0, bottom: 0}
+

@@ -1,0 +1,58 @@
+# List of all Verilog source files to include in this build.
+synthesis.inputs.input_files: [
+  "v/clk_gen_top.v",
+  "v/clk_gen.v",
+  "v/clk_gen_4_1_inv_mux.v",
+  "v/clk_gen_16_1_inv_mux.v",
+  "v/clk_gen_stage1_fo4.v",
+  "v/clk_gen_stage2_fo4.v",
+  "v/clk_gen_stage3_fo4.v",
+  "v/clk_gen_stage4_fo4.v",
+  "v/clk_gen_stage5_fo4.v",
+  "v/clk_gen_stage6_fo4.v",
+  "v/clk_gen_stage7_fo4.v",
+  "v/clk_gen_stage8_fo4.v",
+  "v/clk_gen_stage9_fo4.v",
+  "v/clk_gen_stage10_fo4.v",
+  "v/clk_gen_stage11_fo4.v",
+  "v/clk_gen_stage12_fo4.v",
+  "v/clk_gen_stage13_fo4.v",
+  "v/clk_gen_stage14_fo4.v",
+  "v/clk_gen_stage15_fo4.v",
+  "v/clk_gen_stage16_fo4.v",
+  "v/clk_gen_all_stages.v",
+  "v/clk_gen_my_inverter.v",
+]
+synthesis.inputs.input_files_meta: [append, subst]
+
+# Set top level for synthesis
+synthesis.inputs.top_module: "clk_gen_top"
+
+# Don't synthesize these gate-level netlist modules
+synthesis.inputs.preserve_modules: ["clk_gen"]
+
+# Skip the "syn_map" step in this case since everything should be already mapped!
+synthesis.syn_map: False
+
+# No clocks to constrain
+vlsi.inputs.clocks: []
+
+# Custom output loads (Default output pin load is 1.0 pF)
+vlsi.inputs.output_loads:
+  - {name: clk_o, load: 0.01} # (load unit pF)
+
+# Custom SDC clock constraints
+vlsi.inputs.custom_sdc_constraints:
+  # Disable timing through the reset gate (since it connects together a combinational loop!)
+  - "set_disable_timing -from B -to Y CG/reset"
+
+# Placement Constraints
+vlsi.inputs.placement_constraints:
+  - path: "TOP" # (this name isn't actually checked...)
+    type: toplevel
+    width:  100
+    height: 100
+    x: 0
+    y: 0
+    margins: {left: 0, right: 0, top: 0, bottom: 0}
+
