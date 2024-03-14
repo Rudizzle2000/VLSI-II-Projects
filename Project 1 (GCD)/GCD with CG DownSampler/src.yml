@@ -1,0 +1,51 @@
+# List of all Verilog source files to include in this build.
+# Used by both synthesis and RTL simulation.
+synthesis.inputs.input_files: [
+  # TODO: list verilog files
+  "v/gcd_clk_gen_ds.v",
+  "v/gcd.v",
+
+  "v/v/clk_gen_ds.v",
+
+  "v/v/v/clk_gen.v",
+  "v/v/v/clk_gen_4_1_inv_mux.v",
+  "v/v/v/clk_gen_16_1_inv_mux.v",
+  "v/v/v/clk_gen_all_stages.v",
+  "v/v/v/clk_gen_stage1_fo4.v",
+  "v/v/v/clk_gen_stage2_fo4.v",
+  "v/v/v/clk_gen_stage3_fo4.v",
+  "v/v/v/clk_gen_stage4_fo4.v",
+  "v/v/v/clk_gen_stage5_fo4.v",
+  "v/v/v/clk_gen_stage6_fo4.v",
+  "v/v/v/clk_gen_stage7_fo4.v",
+  "v/v/v/clk_gen_stage8_fo4.v",
+  "v/v/v/clk_gen_stage9_fo4.v",
+  "v/v/v/clk_gen_stage10_fo4.v",
+  "v/v/v/clk_gen_stage11_fo4.v",
+  "v/v/v/clk_gen_stage12_fo4.v",
+  "v/v/v/clk_gen_stage13_fo4.v",
+  "v/v/v/clk_gen_stage14_fo4.v",
+  "v/v/v/clk_gen_stage15_fo4.v",
+  "v/v/v/clk_gen_stage16_fo4.v",
+  "v/v/v/clk_gen_my_inverter.v",
+
+  "${bsg_root}/bsg_misc/bsg_counter_clock_downsample.v",
+  "${bsg_root}/bsg_misc/bsg_strobe.v",
+  "${bsg_root}/bsg_misc/bsg_dff.v",
+  "${bsg_root}/bsg_misc/bsg_xnor.v",
+  "${bsg_root}/bsg_misc/bsg_muxi2_gatestack.v",
+  "${bsg_root}/bsg_misc/bsg_nand.v",
+  "${bsg_root}/bsg_misc/bsg_nor3.v",
+  "${bsg_root}/bsg_misc/bsg_reduce.v",
+  "${bsg_root}/bsg_misc/bsg_buf.v",
+
+
+  # TODO: Add any additional BSG files needed
+  "${bsg_root}/bsg_misc/bsg_defines.v",
+]
+synthesis.inputs.input_files_meta: [append, subst]
+
+# Add synthesis input files to simulation inputs
+# (Only for RTL sim)
+sim.inputs.input_files: synthesis.inputs.input_files
+sim.inputs.input_files_meta: [crossref, subst]
