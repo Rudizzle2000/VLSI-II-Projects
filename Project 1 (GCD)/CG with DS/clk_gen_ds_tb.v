@@ -51,11 +51,11 @@ module clk_gen_ds_tb;
   /* Sequential steps to test the DUT */
   initial begin
 
-    for (integer i = 0; i < 2**$bits(dut_cfg); i++) begin
+    for (integer i = 0; i < 2**$bits(dut_cfg); i++) begin // increment i from 0 to 16
         dut_cfg   = i;
         #1000
         $display("### START TESTING CONFIG %b", dut_cfg);
-        for (integer j = 0; j < 25; j++) begin
+        for (integer j = 0; j < 25; j++) begin // Run for 25 clock cycles
             @(posedge dut_clk);
         end
         #1000
