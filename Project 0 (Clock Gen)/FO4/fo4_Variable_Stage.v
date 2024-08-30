@@ -1,8 +1,4 @@
 
-// Name: Rudy Garcia
-// Class: EE477 (VLSI II)
-// Assignment: LAB0 - Task 1 - Ring Oscillator
-// Date: 01/15/24
 
 // Disctription: Module that provides multiple stages of the main x1 inverter for the ring oscillator loop.
 // INPUT: Input to the first x1 inverter in the main loop.
@@ -37,6 +33,8 @@ module fo4_Variable_Stage #(parameter STAGES = 7, PROBE_IN = 4, PROBE_OUT = 5)
     // Assignment that outputs the last x1 inverter value in the array 
     assign loop_out = x1_outs[STAGES];
 
+    // 7 Intervter stage instantiations ------------------------------------------------------------------
+    
     fo4_1stage
     stage_1
     ( .inv_1_in(x1_outs[0])

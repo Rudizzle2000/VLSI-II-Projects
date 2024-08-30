@@ -1,8 +1,4 @@
 
-// Name: Rudy Garcia
-// Class: EE477 (VLSI II)
-// Assignment: LAB0 - Task 1 - Ring Oscillator
-// Date: 01/15/24
 
 // Disctription: Module that provides a single stage of the main x1 inverter for the ring oscillator as well as
 //               the dangling inverters x1 and x4.
@@ -18,11 +14,6 @@ module fo4_1stage
     wire x1_dangle_1_to_x4_dangle_1;
     wire x1_dangle_2_to_x4_dangle_2;
     wire x1_dangle_3_to_x4_dangle_3;
-
-    // Registers to hold output of dangle x4 inverters (if needed later)
-    /*reg x4_dangle_1_out;
-    reg x4_dangle_2_out;
-    reg x4_dangle_3_out;*/
 
     // X1 INVERTER INSTANTATIONS ------------------------------------------------------------------
 
